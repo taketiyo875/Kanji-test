@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#315c48">
+  <title>常用漢字マスター</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand-mark">漢</div><span class="header-sparkle" aria-hidden="true">✦ ✧</span>
+  <div><h1>常用漢字マスター</h1><p>調べて、解いて、身につけよう。</p></div>
+</header>
+<main>
+  <section class="hero">
+    <p class="eyebrow">KANJI STUDY</p>
+    <h2>漢字を、使える知識に。</h2>
+    <p>常用漢字の検索と、読み方・書き取りクイズ。</p>
+    <div class="hero-doodles" aria-hidden="true"><span class="doodle-star star-one">✦</span><span class="doodle-star star-two">✧</span><span class="doodle-pencil">✏️</span><span class="doodle-book">📚</span></div>
+    <img class="hero-cat" src="cat-mascot.png" alt="常用漢字マスターのオレンジ猫マスコット">
+    <div class="hero-stats"><div><strong id="totalCount">—</strong><span>収録漢字</span></div><div><strong>2</strong><span>クイズ形式</span></div><div><strong id="learnedCount">0</strong><span>学習済み</span></div></div>
+    <div class="mascot-note"><img src="cat-mascot.png" alt="" class="mini-cat"><span>いっしょにコツコツがんばろう！</span></div>
+  </section>
+
+  <nav class="tabs" aria-label="メニュー">
+    <button class="tab active" data-tab="search">漢字を調べる</button>
+    <button class="tab" data-tab="quiz">4択クイズ</button>
+  </nav>
+
+  <section id="searchPanel" class="panel">
+    <div class="section-heading"><div><p class="eyebrow">DICTIONARY ✦</p><h2>漢字を検索 <span class="heading-icon">📖</span></h2></div><span class="pill">一覧・読み・意味</span></div>
+    <div class="decor-tip"><span>🐾</span> 気になる漢字をタップして、学習済みスタンプを集めよう！ <span>✧</span></div>
+    <label class="searchbox"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="漢字・読み・意味で検索" autocomplete="off"><button id="clearSearch" aria-label="検索をクリア">×</button></label>
+    <div class="filter-row"><label for="sortSelect">並び順</label><select id="sortSelect"><option value="grade">学年・区分順</option><option value="char">漢字順</option></select><span id="resultCount" class="muted"></span></div>
+    <div id="kanjiGrid" class="kanji-grid" aria-live="polite"></div>
+    <button id="loadMore" class="secondary full">もっと見る</button>
+    <p id="dataStatus" class="data-status">漢字データを読み込んでいます…</p>
+  </section>
+
+  <section id="quizPanel" class="panel hidden">
+    <div class="section-heading"><div><p class="eyebrow">QUICK CHALLENGE ✦</p><h2>4択クイズ <span class="heading-icon">✏️</span></h2></div><span class="pill">全10問</span></div>
+    <div class="decor-tip quiz-tip"><span>🐈</span> 猫先生といっしょにチャレンジ！ <span>⭐</span></div>
+    <p class="muted">出題形式を選んでスタート！</p>
+    <div class="quiz-mode">
+      <label class="mode-card"><input type="radio" name="quizMode" value="reading" checked><span class="mode-icon">読</span><strong>読み方</strong><small>漢字から読みを選ぶ</small></label>
+      <label class="mode-card"><input type="radio" name="quizMode" value="writing"><span class="mode-icon">書</span><strong>書き取り</strong><small>読みから漢字を選ぶ</small></label>
+      <label class="mode-card"><input type="radio" name="quizMode" value="mixed"><span class="mode-icon">両</span><strong>ミックス</strong><small>両方から出題</small></label>
+    </div>
+    <div id="quizStart" class="quiz-start"><button id="startQuiz" class="primary">クイズを始める →</button><p class="muted">問題は収録データからランダムに出題されます。</p></div>
+    <div id="quizArea" class="hidden">
+      <div class="quiz-progress"><span id="questionNumber">1 / 10</span><div class="progress-track"><div id="progressBar"></div></div><span id="scoreLabel">正解 0</span></div>
+      <div class="question-card"><p id="questionType" class="eyebrow">読み方を選ぼう</p><div id="questionPrompt" class="question-prompt">漢字</div><p id="questionSub" class="muted"></p></div>
+      <div id="answerOptions" class="answer-options"></div>
+      <div id="answerFeedback" class="feedback hidden" aria-live="polite"></div>
+      <button id="nextQuestion" class="primary full hidden">次の問題 →</button>
+    </div>
+    <div id="quizResult" class="result-card hidden"><img src="cat-mascot.png" class="result-cat" alt="がんばったね！猫マスコット"><div class="result-medal">✦</div><p class="eyebrow">RESULT</p><h3 id="resultTitle">おつかれさま！</h3><p id="resultScore"></p><button id="retryQuiz" class="primary">もう一度挑戦</button><button id="backToSearch" class="secondary full">漢字を調べる</button></div>
+  </section>
+  <div class="achievement-panel"><div class="achievement-title">🐾 にゃんこ学習バッジ</div><p class="muted">学習した漢字を増やしてバッジを集めよう！</p><div id="achievementBadges" class="achievement-badges"><span class="achievement locked">🌱 はじめの一歩</span><span class="achievement locked">📚 ことばハンター</span><span class="achievement locked">👑 漢字マスター</span></div></div>
+  <footer><p>🐈 常用漢字マスター ✦</p><small>学習用の参考サイトです。読み方・意味はデータの収録状況により異なる場合があります。</small></footer>
+</main>
+<dialog id="detailDialog"><button id="closeDialog" class="dialog-close" aria-label="閉じる">×</button><div id="detailContent"></div></dialog>
+<script src="app.js"></script>
+</body>
+</html>
